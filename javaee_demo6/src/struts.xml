@@ -57,7 +57,7 @@
     </package>
          <package name="upload" namespace="/upload" extends="struts-default">
      <action class="action.UploadAction" method="upload" name="upload">
-        	<result name="page">/WEB-INF/page/show.jsp</result>    	
+        	<result name="pagexyl">/WEB-INF/page/show.jsp</result>    	
         </action>
          </package>
 </struts>
