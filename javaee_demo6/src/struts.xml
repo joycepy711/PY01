@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+  "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.configuration.xml.reload" value="true" />
+<!-- 开启静态方法调用 -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    <!-- 设置开发者模式 -->
+    <constant name="struts.devMode" value="true"></constant>
+    <!-- 限制文件上传的大小 (默认为2兆)-->
+    <constant name="struts.multipart.maxSize" value="10485760"></constant>
+    <!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+    <constant name="struts.multipart.saveDir " value="/D:/upload" />
+    <!-- 配置全局消息资源包，解决英文问题 -->
+    <constant name="struts.custom.i18n.resources" value="fileupload_message"></constant>
+<package name="test" namespace="/"  extends="struts-default">
+    <interceptors>
+      <!-- 注册拦截器 -->  
+      <interceptor name="myInterceptor" class="interceptor.LoginInterceptor" />
+      <!-- 注册拦截器栈 --> 
+      <interceptor-stack name="adminPermission">
+        <interceptor-ref name="myInterceptor"/>
+      </interceptor-stack>
+    </interceptors>  
+    <!-- 全局返回结果 -->
+    <global-results>
+      <result name="login">/login.jsp</result>
+    </global-results>
+    <!-- 访问资源 -->
+        <action name="login" class="action.UserAction" method="login">
+            <result name="logsuccess">/logsuccess.jsp</result>
+            <result name="logfail">/logfail.jsp</result>
+        </action>
+        <action name="logup" class="action.UserAction" method="logup">
+            <result name="regsuccess">/regsuccess.jsp</result>
+            <result name="input" type="dispatcher">/register.jsp</result>
+            
+        </action>    
+         <action name="logout" class="action.LogoutAction" method="logout">
+            <result name="logout">/login.jsp</result>
+            <!-- 设置需要拦截的方法，多个以逗号隔开  -->
+			<interceptor-ref name="myInterceptor">
+			<param name="includeMethods">logout</param>
+			</interceptor-ref>
+        </action>  
+    </package>
+         <package name="upload" namespace="/upload" extends="struts-default">
+     <action class="action.UploadAction" method="upload" name="upload">
+        	<result name="page">/WEB-INF/page/show.jsp</result>    	
+        </action>
+         </package>
+</struts>
