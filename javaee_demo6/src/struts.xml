@@ -43,11 +43,21 @@
 			<interceptor-ref name="myInterceptor">
 			<param name="includeMethods">logout</param>
 			</interceptor-ref>
-        </action>  
+        </action>
+	
+	////////////py修改代码/////////////////////////
+	         <action name="logout" class="action.LogoutAction" method="logout">
+            <result name="logout">/login.jsp</result>
+            <!-- 设置需要拦截的方法，多个以逗号隔开  -->
+			<interceptor-ref name="myInterceptor">
+			<param name="includeMethods">logout</param>
+			</interceptor-ref>
+        </action>
+	//////////////////////////////////////////////
     </package>
-         <package name="upload" namespace="/upload" extends="struts-default">
+         <package name="pyupload" namespace="/upload" extends="struts-default">
      <action class="action.UploadAction" method="upload" name="upload">
-        	<result name="page">/WEB-INF/page/show.jsp</result>    	
+        	<result name="pagepy">/WEB-INF/page/show.jsp</result>    	
         </action>
          </package>
 </struts>
