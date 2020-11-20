@@ -53,7 +53,7 @@
 			<param name="includeMethods">logout</param>
 			</interceptor-ref>
         </action>
-	//////////////////////////////////////////////
+	////////////////////////////////////////////////////
     </package>
          <package name="pyupload" namespace="/upload" extends="struts-default">
      <action class="action.UploadAction" method="upload" name="upload">
