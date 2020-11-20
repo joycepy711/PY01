@@ -55,7 +55,7 @@
         </action>
 	////////////xyl修改代码//////////////////////////////////
     </package>
-         <package name="upload" namespace="/upload" extends="struts-default">
+         <package name="xylupload" namespace="/upload" extends="struts-default">
      <action class="action.UploadAction" method="upload" name="upload">
         	<result name="pagexyl123">/WEB-INF/page/show.jsp</result>    	
         </action>
